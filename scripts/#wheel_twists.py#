@@ -1,0 +1,23 @@
+ine#!/usr/bin/env python 
+import rospy 
+from geometry_msgs.msg import Twist
+
+def callback(msg):
+    rospy.loginfo("Received a /cmd_vel message!")
+    rospy.loginfo("Linear Components: [%f, %f, %f]"%(msg.linear.x, msg.linear.y, msg.linear.z))
+    rospy.loginfo("Angular Components: [%f, %f, %f]"%(msg.angular.x, msg.angular.y, msg.angular.z))
+
+
+    # do velocity processing here:
+    # Use the kinematics of your robot to map linear and angular velocities into motor commands
+
+
+    #then set your wheel speeds here
+
+def listener():
+    rospy.init_node('cmd_vel_listener')
+    rospy.Subscriber("/cmd_vel", Twist, callback)
+
+if __name__== '__main__":
+    listener()
+
